@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <unistd.h>
 
-// Declaração do mutex e da variável de condição
+// Inicializa Mutex e variavel
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond_var = PTHREAD_COND_INITIALIZER;
 int sinal = 0; // Variável de controle para o sinal
@@ -11,11 +11,11 @@ int sinal = 0; // Variável de controle para o sinal
 // Função executada pela thread sinalizadora
 void* thread_sinalizadora(void* arg) {
     printf("Thread sinalizadora: iniciando tarefa...\n");
-    sleep(2); // Simula uma tarefa longa
+    sleep(2); 
 
     // Bloqueia o mutex antes de modificar o valor do sinal
     pthread_mutex_lock(&mutex);
-    sinal = 1; // Define o sinal para indicar que a tarefa foi concluída
+    sinal = 1; // Sinal para indicar que a tarefa foi concluída
     printf("Thread sinalizadora: tarefa concluída. Enviando sinal...\n");
 
     // Sinaliza a thread ouvinte para que ela possa continuar
